@@ -93,6 +93,11 @@ var _broadcastMessage = function (payload, res, cb) {
     httpreq.end();
 }
 
+var _minMaxRandom = function (min, max) {
+    var result = Math.floor((Math.random() * ((max + 1) - min)) + min);
+    return result;
+}
+
 var _smartAiPredictive = function (farmerForm, cb) {
     // HARDCODED !!
     //location = report.location;
@@ -100,7 +105,7 @@ var _smartAiPredictive = function (farmerForm, cb) {
 
     var max = 60;
     var min = 4;
-    var infestationProbability = Math.floor((Math.random() * ((max + 1) - min)) + min);
+    var infestationProbability = _minMaxRandom(min, max);
 
     // Check infestation
     if (farmerForm.crop === "SUGARBEET" || farmerForm.pest === "ARMYWORMS" || farmerForm.crop === "RICE" || farmerForm.pest === "RICE SEED MIDGES") {
@@ -116,15 +121,15 @@ var _smartAiPredictive = function (farmerForm, cb) {
     }
 
     // Check weather
-    var minWeather = 50;
-    var maxWeather = 100;
-    var weatherTemp = Math.floor((Math.random() * ((maxWeather + 1) - minWeather)) + minWeather);
+    var minWeather  = 50;
+    var maxWeather  = 100;
+    var weatherTemp = _minMaxRandom(minWeather, maxWeather);
     farmerForm.message += "Weather is at " + weatherTemp + " F with high range precipitation. ";
 
     // Check natural causes/disasters
-    var minCause = 0;
-    var maxCause = 2;
-    var causeIndex = Math.floor((Math.random() * ((maxFire + 1) - minFire)) + minFire);
+    var minCause    = 0;
+    var maxCause    = 2;
+    var causeIndex = _minMaxRandom(minCause, maxCause);
 
     switch (causeIndex) {
         case 0:
@@ -143,7 +148,7 @@ var _smartAiPredictive = function (farmerForm, cb) {
     // Check fire
     var minFire = 0;
     var maxFire = 5;
-    var fireCount = Math.floor((Math.random() * ((maxFire + 1) - minFire)) + minFire);
+    var fireCount = _minMaxRandom(minFire, maxFire);;
     if (fireCount > 0) {
         farmerForm.message += "There are " + fireCount + " active fire areas spotted nearby. ";
     }
