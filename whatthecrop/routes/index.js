@@ -40,11 +40,11 @@ var _sendResponseMessage = function (farmerForm, cb) {
 
         var singleResponse = {};
         singleResponse.id   = farmerForm.id;
-        singleResponse.body = prediction;
+        singleResponse.body = prediction.message;
 
         var broadcastResponse = {};
         broadcastResponse.state = farmerForm.state;
-        broadcastResponse.body  = prediction;
+        broadcastResponse.body  = prediction.message;
 
         var responsePayload = broadcastResponse;
         if (!isBroadcast) {
@@ -59,8 +59,11 @@ var _broadcastMessage = function (payload, res, cb) {
     var data = JSON.stringify(payload);
     console.log("Sending payload:" + data);
 
+    var host = '35e118ff.ngrok.com';
+    // var host = 'whatthecrop.mybluemix.net';
+
     var options = {
-        host: 'whatthecrop.mybluemix.net',
+        host: host,
         port: 80,
         path: '/n/',
         method: 'POST',
