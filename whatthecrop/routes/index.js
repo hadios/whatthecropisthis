@@ -7,6 +7,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/farmerUpload', function(req, res, next) {
+
+
+
     res.render('index', {
         message: {
             id: 1,
@@ -15,7 +18,8 @@ router.get('/farmerUpload', function(req, res, next) {
         location: {
             place: "New York",
             body: "Rat infestation!"
-        }
+        },
+        title: 'WhatTheCrop'
     });
 
     res.json({
