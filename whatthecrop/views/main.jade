@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1= title
+  p A farmer reports that there is something strange in the neighbourhood
+  p Message: #{report}
+  p Farmer intel conclude that #{payload.state} has #{payload.body}

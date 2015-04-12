@@ -1,12 +1,18 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express         = require('express');
+var path            = require('path');
+var favicon         = require('serve-favicon');
+var logger          = require('morgan');
+var cookieParser    = require('cookie-parser');
+var bodyParser      = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
+var mongodb     = require('mongodb');
+var mongoose    = require('mongoose');
+
+var port = (process.env.VCAP_APP_PORT || 1337);
+var host = (process.env.VCAP_APP_HOST || '0.0.0.0');
 
 var app = express();
 
@@ -55,6 +61,19 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+// Connect to mongoDB
+
+// var db;
+// if (process.env.VCAP_SERVICES) {
+//    var env = JSON.parse(process.env.VCAP_SERVICES);
+//    if (env['mongodb-2.2']) {
+//         db = mongoose.createConnection(env['mongodb-2.2'][0].credentials.url);
+//         console.log ("Connected to mongodb-2.2 service");
+//     }
+// } else {
+//     db = mongoose.connect('mongodb://localhost:27017/db');
+// }
 
 
 module.exports = app;
