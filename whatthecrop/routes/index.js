@@ -59,8 +59,8 @@ var _broadcastMessage = function (payload, res, cb) {
     var data = JSON.stringify(payload);
     console.log("Sending payload:" + data);
 
-    var host = '35e118ff.ngrok.com';
-    // var host = 'whatthecrop.mybluemix.net';
+    //var host = '35e118ff.ngrok.com';
+     var host = 'whatthecrop.mybluemix.net';
 
     var options = {
         host: host,
@@ -107,7 +107,7 @@ var _smartAiPredictive = function (farmerForm, cb) {
         farmerForm.message = "There is a " + infestationProbability + "% possibility of " + farmerForm.pest + " infestation in the region. ";
 
         if (infestationProbability) {
-            farmerForm.message += "BEWARE!";
+            farmerForm.message += "BEWARE! ";
         } else {
             farmerForm.message += farmerForm.crop + " farmer take note! ";
         }
